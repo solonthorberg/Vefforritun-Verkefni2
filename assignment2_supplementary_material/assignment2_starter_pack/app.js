@@ -53,13 +53,13 @@ const displaySequence = async () => {
                             note = 'C4';
                             break;
                         case 'yellow':
-                            note = 'A#3';
+                            note = 'D4';
                             break;
                         case 'green':
-                            note = 'G3';
+                            note = 'E4';
                             break;
                         case 'blue':
-                            note = 'F3';
+                            note = 'F4';
                             break;
                     }
                     playTune(waveform, note);
@@ -115,13 +115,13 @@ const userInput = async (color) => {
             note = 'C4';
             break;
         case 'yellow':
-            note = 'A#3';
+            note = 'D4';
             break;
         case 'green':
-            note = 'G3';
+            note = 'E4';
             break;
         case 'blue':
-            note = 'F3';
+            note = 'F4';
             break;
     }
     playTune(waveform, note);
@@ -131,7 +131,7 @@ const userInput = async (color) => {
             await axios.post(API_Url + '/sequence', { sequence: userSequence });
             setTimeout(async () => {
                 await startGame();
-            }, 1500);
+            }, 1000);
         } else {
             document.getElementById('failure-modal').style.display = 'flex';
             document.getElementById('replay-btn').disabled = true;
