@@ -103,8 +103,10 @@ const startGame = async () => {
 };
 
 const userInput = async (color) => {
-    userSequence.push(color);
     const pad = document.getElementById(`pad-${color}`);
+    if (pad.disabled) return;
+
+    userSequence.push(color);
     pad.classList.add('active');
     setTimeout(() => pad.classList.remove('active'), 500);
 
@@ -161,20 +163,28 @@ document.getElementById('pad-green').addEventListener('click', () => userInput('
 document.getElementById('pad-blue').addEventListener('click', () => userInput('blue'));
 
 document.addEventListener('keydown', (event) => {
+    let color;
     switch (event.key.toUpperCase()) {
         case 'Q':
-            userInput('red');
+            color = 'red';
             break;
         case 'W':
-            userInput('yellow');
+            color = 'yellow';
             break;
         case 'A':
-            userInput('green');
+            color = 'green';
             break;
         case 'S':
-            userInput('blue');
+            color = 'blue';
             break;
+        default:
+            return;
     }
+
+    const pad = document.getElementById(`pad-${color}`);
+    if (pad.disabled) return;
+
+    userInput(color);
 });
 
 window.addEventListener('load', resetGameState);
